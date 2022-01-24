@@ -1,0 +1,44 @@
+.font-grey {
+  color: #676767;
+}
+
+.font-danger {
+  color: #ba4c4c;
+}
+
+.font-success {
+  color: #98be59;
+}
+
+h1 {
+  color: #12406b;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+h2 {
+  color: #12406b;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.para-text {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #1c4167;
+}
+
+.page-header {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #1c4167;
+}
+
+.sub-text {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #c4c4c4;
+}

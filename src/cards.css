@@ -1,0 +1,66 @@
+/* Cards */
+
+.login-card {
+  padding: 10px 15px;
+  min-height: 520px;
+  background: #fefefe;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.sso-profile-card {
+  padding: 30px 30px;
+  min-height: 410px;
+  background: #fefefe;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.breadcrumb-card {
+  background: #fefefe;
+  box-shadow: 7px 7px 21px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  min-height: 35px;
+  padding: 15px 15px 1px;
+}
+
+.card {
+  padding: 10px 15px;
+  background: #fefefe;
+  box-shadow: 7px 7px 21px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+
+.card.warning {
+  background: #ffd161;
+}
+
+.card.danger {
+  background: #ba4c4c;
+}
+
+.card.success {
+  background: #98be59;
+}
+
+
+.small-card {
+  min-height: 180px;
+}
+
+.pieChart-card {
+  min-height: 375px;
+}
+
+.energy-card {
+  min-height: 280px;
+}
+
+.card-bg-blur {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+}

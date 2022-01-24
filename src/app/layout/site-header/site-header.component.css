@@ -1,0 +1,41 @@
+.img-login {
+    position: relative;
+    /* height: 100vh; */
+    background-size: cover;
+    background-position: right bottom;
+    background-image: url('./../../../assets/images/Bg-Login.png');
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.confirm-logout-heading {
+    padding: 25px 0px;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 44px;
+    color: #1C4167;
+}
+
+.img-login .p-text {
+    padding: 25px 0px;
+    font-size: 18px;
+    line-height: 17px;
+    color: #1C4167;
+    text-align: left;
+}
+
+.btnLogout {
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+    display: block;
+    margin: 0px auto;
+    border: 2px solid var(--highlight-bg);
+    color: white!important;
+    background-color: #12406B;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none!important;
+}

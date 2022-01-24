@@ -1,0 +1,63 @@
+.p-button {
+  margin: 0;
+  display: inline-flex;
+  cursor: pointer;
+  user-select: none;
+  align-items: center;
+  vertical-align: bottom;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  padding: 5px 15px;
+}
+
+.p-button.p-button-icon-only {
+  justify-content: center;
+  padding: 9px;
+}
+
+.p-button.p-button-icon-only .fa {
+  font-size: 24px;
+}
+
+.p-button.p-button-icon-only.p-button-rounded {
+  border-radius: 50%;
+  height: 43px;
+  width: 43px;
+}
+
+.p-button.p-button-icon-only .p-button-label {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  flex: 0 0 auto;
+}
+
+.p-button .p-button-icon-left {
+  margin-right: 0.5rem;
+  font-size: 14px;
+}
+
+
+.p-button-label {
+  flex: 1 1 auto;
+  font-size: 14px;
+}
+
+.button-success {
+  background-color: #98be59;
+  border: 1px solid #98be59;
+  color: white;
+}
+
+.button-primary {
+  background-color: #1c4167;
+  border: 1px solid #1c4167;
+  color: white;
+}
+
+.button-primary:active {
+  background-color: #56bae2;
+  border: 1px solid #56bae2;
+  outline: none;
+}

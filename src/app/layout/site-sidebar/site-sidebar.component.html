@@ -1,0 +1,20 @@
+<div class="sidebar-bg-light border-right" id="sidebar-wrapper" [ngClass]="{'toggled': toggled}"
+     (window:resize)="onResize($event)">
+  <div class="sidebar-heading">
+    <div class="sidebar-logo" alt="ileco-image">
+    </div>
+  </div>
+  <div class="list-group list-group-flush">
+    <a routerLink="/sessionMenu" routerLinkActive="active"
+       class="list-group-item list-group-item-action sidebar-bg-light">
+      <img src="../../../../assets/images/sidebar/overview.png" class="sidebar-icon" alt="sidebar-image">
+      <span class="sidebar-text">Session</span>
+    </a>
+    <div class="toggle-container list-group-item list-group-item-action toggleBG" [ngClass]="{'toggled': toggled}">
+      <button class="btn" id="menu-toggle" (click)="toggledSideBar()">
+        <div class="toggledIcon">
+        </div>
+      </button>
+    </div>
+  </div>
+</div>

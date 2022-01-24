@@ -1,0 +1,11 @@
+<div class="d-flex" id="wrapper">
+  <app-site-sidebar (collapsedSidebar)="collapsedSidebar($event)"></app-site-sidebar>
+  <div id="page-content-wrapper">
+<!--    <app-site-header [userData]="userData"></app-site-header>-->
+    <app-site-header></app-site-header>
+    <div class="main-content" [ngClass]="{'toggled': toggled}">
+      <router-outlet></router-outlet>
+    </div>
+    <app-site-footer></app-site-footer>
+  </div>
+</div>

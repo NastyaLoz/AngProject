@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./session-menu.component.css']
 })
 export class SessionMenuComponent implements OnInit {
+  menu:any;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  clickButton(val:string){
+    this.menu = val;
+  }
 }

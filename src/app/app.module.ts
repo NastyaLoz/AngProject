@@ -30,6 +30,9 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 export const ApiUrl = new InjectionToken('ApiUrl');
 
@@ -66,7 +69,10 @@ export const ApiUrl = new InjectionToken('ApiUrl');
     MatDatepickerModule,
     MatInputModule,
     BrowserAnimationsModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    MatButtonToggleModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [
     {provide: ApiUrl, useValue: environment.apiUrl},

@@ -1,5 +1,13 @@
 <div class="session-menu">
-  <app-create-session></app-create-session>
-  <app-list-sessions></app-list-sessions>
+  <mat-button-toggle-group #group="matButtonToggleGroup" name="fontStyle" aria-label="Font Style" [value]="menu" (change)="clickButton(group.value)">
+    <mat-button-toggle value="create" >New session</mat-button-toggle>
+    <mat-button-toggle value="list">List session</mat-button-toggle>
+  </mat-button-toggle-group>
+  <div *ngIf="menu == 'create'">
+    <app-create-session></app-create-session>
+  </div>
+  <div *ngIf="menu == 'list'">
+    <app-list-sessions></app-list-sessions>
+  </div>
 </div>
 

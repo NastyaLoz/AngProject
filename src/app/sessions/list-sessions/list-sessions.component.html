@@ -1,55 +1,114 @@
 <div>
   <!--EV-->
-  <div class="row padding-b-null">
+  <div class="row padding-10">
     <div class="">
       <label class="form-label">EV</label>
     </div>
     <!-- Drop Down -->
     <div class="">
       <div class="dropdown-select mr-2 ml-2">
-        <select [(ngModel)]="selected">
-          <option *ngFor="let chargePole of chargePoles; let i = index"
+        <select [(ngModel)]="selected" (change)="getSessions(selected)">
+          <option *ngFor="let chargePole of chargerPoleArray; let i = index"
                   [value]="chargePole.chargepoleId">{{chargePole.name}}</option>
         </select>
       </div>
     </div>
   </div>
   <!--Table-->
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
+<!--  <div class="mat-elevation-z8">-->
+<!--    <table mat-table [dataSource]="dataSourceTwo">-->
 
-      <!-- Position Column -->
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-      </ng-container>
+<!--      &lt;!&ndash; Position Column &ndash;&gt;-->
+<!--&lt;!&ndash;      <ng-container matColumnDef="position">&ndash;&gt;-->
+<!--&lt;!&ndash;        <th mat-header-cell *matHeaderCellDef> No. </th>&ndash;&gt;-->
+<!--&lt;!&ndash;        <td mat-cell *matCellDef="let num"> {{num}} </td>&ndash;&gt;-->
+<!--&lt;!&ndash;      </ng-container>&ndash;&gt;-->
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-      </ng-container>
+<!--      &lt;!&ndash; Name Column &ndash;&gt;-->
+<!--      <ng-container matColumnDef="name">-->
+<!--        <th mat-header-cell *matHeaderCellDef> Name </th>-->
+<!--        <td mat-cell *matCellDef="let element"> {{element.name}} </td>-->
+<!--      </ng-container>-->
 
-      <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef> Weight </th>
-        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-      </ng-container>
+<!--      &lt;!&ndash; Weight Column &ndash;&gt;-->
+<!--      <ng-container matColumnDef="date">-->
+<!--        <th mat-header-cell *matHeaderCellDef> Date </th>-->
+<!--        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>-->
+<!--      </ng-container>-->
 
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef> Symbol </th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-      </ng-container>
+<!--      &lt;!&ndash; Symbol Column &ndash;&gt;-->
+<!--      <ng-container matColumnDef="start">-->
+<!--        <th mat-header-cell *matHeaderCellDef> Start </th>-->
+<!--        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>-->
+<!--      </ng-container>-->
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+<!--      <ng-container matColumnDef="stop">-->
+<!--        <th mat-header-cell *matHeaderCellDef> Stop </th>-->
+<!--        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>-->
+<!--      </ng-container>-->
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                   showFirstLastButtons
-                   aria-label="Select page of periodic elements">
-    </mat-paginator>
+<!--      <tr mat-header-row *matHeaderRowDef="displayedColumnsTwo"></tr>-->
+<!--      <tr mat-row *matRowDef="let row; columns: displayedColumnsTwo;"></tr>-->
+<!--    </table>-->
+
+<!--    <mat-paginator [pageSizeOptions]="[5, 10, 20]"-->
+<!--                   showFirstLastButtons-->
+<!--                   aria-label="Select page of periodic elements">-->
+<!--    </mat-paginator>-->
+<!--  </div>-->
+  <!--Table-->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="">
+        <div *ngIf="sessionsArray.length > 0" class="table-box tableScroll">
+          <div class="" *ngIf="tableElement.offsetHeight > 450" [style.width.px]="tableElement.getBoundingClientRect().width" #tableHead>
+            <table matSort class="dashboard-table">
+              <tr>
+                <th class="sizeNum"><h2>№</h2></th>
+                <th class="" [style.width.px]="tableElement.rows[0].cells[1].getBoundingClientRect().width"><h2>Date</h2></th>
+                <th class="" [style.width.px]="tableElement.rows[0].cells[2].getBoundingClientRect().width"><h2>Start</h2></th>
+                <th class="" [style.width.px]="tableElement.rows[0].cells[3].getBoundingClientRect().width"><h2>Stop</h2></th>
+              </tr>
+            </table>
+          </div>
+          <div class="" *ngIf="tableElement.offsetHeight < 450" [style.width.px]="tableElement.getBoundingClientRect().width" #tableHead>
+            <table matSort class="dashboard-table">
+              <tr>
+                <th class="sizeNum" ><h2>№</h2></th>
+                <th class="" [style.width.px]="tableElement.rows[0].cells[1].getBoundingClientRect().width"><h2>Date</h2></th>
+                <th class="" [style.width.px]="tableElement.rows[0].cells[2].getBoundingClientRect().width"><h2>Start</h2></th>
+                <th class="" [style.width.px]="tableElement.rows[0].cells[3].getBoundingClientRect().width"><h2>Stop</h2></th>
+                <th class="" [style.width.px]="tableElement.rows[0].cells[4].getBoundingClientRect().width"><h2>Current level of charge</h2></th>
+                <th class="" [style.width.px]="tableElement.rows[0].cells[5].getBoundingClientRect().width"><h2>Wished level of charge</h2></th>
+                <th class="" [style.width.px]="tableElement.rows[0].cells[6].getBoundingClientRect().width"><h2>Battery size</h2></th>
+                <th class="" [style.width.px]="tableElement.rows[0].cells[7].getBoundingClientRect().width"><h2>Smart</h2></th>
+                <th class="" [style.width.px]="tableElement.rows[0].cells[8].getBoundingClientRect().width"><h2>Load power</h2></th>
+                <th class="" [style.width.px]="tableElement.rows[0].cells[9].getBoundingClientRect().width"><h2>Charge</h2></th>
+              </tr>
+            </table>
+          </div>
+          <div class="tableScroll-body" #tableBody>
+            <table class="dashboard-table" #tableElement>
+              <tr *ngFor="let element of sessionsArray; let i = index">
+                <td class="para-text sizeNum">{{i + 1}}</td>
+                <th class="para-text sizeName"><h2>{{element.dt}}</h2></th>
+                <th class="para-text sizeName"><h2>{{element.start.hours + ":" + element.start.minutes}}</h2></th>
+                <th class="para-text sizeName"><h2>{{element.stop.hours + ":" + element.stop.minutes}}</h2></th>
+                <th class="para-text sizeName"><h2>{{element.soc_inittial}}</h2></th>
+                <th class="para-text sizeName"><h2>{{element.soc_final}}</h2></th>
+                <th class="para-text sizeName"><h2>{{element.battery_size}}</h2></th>
+                <th class="para-text sizeName"><h2>{{element.smart}}</h2></th>
+                <th class="para-text sizeName"><h2>{{element.power}}</h2></th>
+                <th class="para-text sizeName"><h2>{{element.much_charge}}</h2></th>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div *ngIf="sessionsArray.length == 0">
+          <label class="form-label pl-0">No components of this type</label>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

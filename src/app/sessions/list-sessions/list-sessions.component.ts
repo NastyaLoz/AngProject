@@ -1,8 +1,11 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ChargePole, Session, PeriodicElement} from "../../interfices/AngProject.interfaces";
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {ChargePole, Session, PeriodicElement, SessionList} from "../../interfices/AngProject.interfaces";
 import * as moment from "moment";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
+import {ApiUrl} from "../../app.module";
+import {MatDialog} from "@angular/material/dialog";
 
 const ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
@@ -24,18 +27,21 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class ListSessionsComponent implements OnInit {
   selected: any;
+  sessionsArray: any;
+  chargerPoleArray: any;
+  num:any;
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
+  displayedColumnsTwo: string[] = ['position', 'name', 'data', 'start', 'stop'];
+  dataSourceTwo: any;
   @ViewChild(MatPaginator) paginator: any;
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
 
   chargePoles: ChargePole[] = [
     {
       chargepoleId:1,
       power_source:"AC",
-      power_level:11,
+      power_level:"11",
       cost_optimization:"1",
       charging_time:"1",
       name:"E100561*001"
@@ -43,7 +49,7 @@ export class ListSessionsComponent implements OnInit {
     {
       chargepoleId:2,
       power_source:"AC",
-      power_level:11,
+      power_level:"11",
       cost_optimization:"1",
       charging_time:"1",
       name:"E100561*002"
@@ -59,12 +65,34 @@ export class ListSessionsComponent implements OnInit {
     smart:false,
   }]
 
-  constructor() { }
+  constructor(private http: HttpClient, @Inject(ApiUrl) private apiUrl: string, public dialog: MatDialog) {
+    this.http.get<ChargePole[]>(this.apiUrl + '/sessions/chargepole').subscribe(result => {
+      debugger
+      this.chargerPoleArray = result;
+      this.selected = this.chargerPoleArray[0].chargepoleId;
+      this.getSessions(this.selected);
+    }, error => {
+      console.log(error);
+    })
+  }
 
 
   ngOnInit(): void {
-    this.selected = this.chargePoles[0].chargepoleId;
   }
 
+  getSessions(val: number){
+    this.http.get<SessionList[]>(this.apiUrl + '/sessions/' + val).subscribe(result => {
+      debugger
+      this.sessionsArray = result;
+      this.num = Array(this.sessionsArray.length).fill(0).map((e,i)=>i+1);
+      this.dataSourceTwo = new MatTableDataSource<PeriodicElement>(this.sessionsArray);
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 
 }

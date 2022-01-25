@@ -373,7 +373,7 @@ body {
 .dashboard-table td {
   text-align: left;
   padding: 8px;
-  border: 2px solid #e7e8e8;
+  border: 2px solid #e7e8e8 !important;
 }
 
 /* Colours Section */

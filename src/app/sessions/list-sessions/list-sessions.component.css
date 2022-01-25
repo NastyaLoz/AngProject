@@ -2,7 +2,133 @@ table {
   width: 100%;
 }
 
+.padding-10{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .mat-elevation-z8{
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.tableScroll {
+  width: 100%;
+  /*overflow-y: auto;*/
+  border: 2px solid #e7e8e8;
+}
+
+.table-head-width {
+  width: calc(100% - 10px);
+}
+
+.tableScroll .dashboard-table th {
+  border:0;
+  vertical-align: baseline;
+}
+.tableScroll .dashboard-table th {
+  border-right: 2px solid #e7e8e8;
+}
+
+/*.tableScroll .dashboard-table h2 {*/
+/*  margin: 4px 0 4px 0;*/
+/*}*/
+
+.tableScroll .dashboard-table th:last-child {
+  border-right: 0;
+}
+
+.tableScroll .dashboard-table th h2 {
+  margin: 0;
+}
+
+/*.tableScroll .dashboard-table th, .tableScroll .dashboard-table td {*/
+/*  padding-top: 0;*/
+/*  padding-bottom: 0;*/
+/*}*/
+
+.tableScroll-body .dashboard-table tr:first-child td{
+  /*border-top: 0;*/
+}
+
+.tableScroll-body .dashboard-table tr:last-child td{
+  border-bottom: 0;
+}
+
+.tableScroll-body .dashboard-table tr td:last-child{
+  border-right: 0;
+}
+
+/*.tableScroll-body .dashboard-table tr td:last-child div{*/
+/*  width: fit-content;*/
+/*  margin: 0;*/
+/*}*/
+
+/*.tableScroll-body .dashboard-table tr td:first-child{*/
+/*  width: 32px;*/
+/*}*/
+
+.tableScroll-body td {
+  border-left: 0;
+}
+
+.tableScroll table {
+  border: 0;
+}
+
+.tableScroll-body {
+  max-height: 450px;
+  width: 100%;
+  /*overflow-y: auto;*/
+  /*border-top: 2px solid #e7e8e8;*/
+}
+
+.tableScroll .num {
+  width: 25px;
+}
+
+select option:hover {
+  color: #000;
+  box-shadow: inset 20px 20px #00f;
+}
+
+.demo-active-state .button-primary {
+  background-color: #56bae2;
+  border: 1px solid #56bae2;
+}
+
+.sizeNum{
+  /*min-width: 33px;*/
+  min-width: 33px;
+  max-width: 34px;
+}
+
+.sizeName {
+  width: 100%;
+  min-width: 190px;
+}
+
+.sizeParam{
+  min-width: 190px;
+}
+
+.sizeActive {
+  min-width: 180px;
+  max-width: 185px;
+}
+
+.active-text {
+  /*padding: 5px 8px 5px 8px;*/
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #1c4167;
+}
+
+.active-text:hover {
+  color:#56bae2;
+}
+
+.active-row {
+  display: flex;
+  flex-wrap: nowrap;
 }

@@ -8,7 +8,7 @@
     <div class="">
       <div class="dropdown-select mr-2 ml-2">
         <select [(ngModel)]="selected" (change)="getSessions(selected)">
-          <option *ngFor="let chargePole of chargePoles; let i = index"
+          <option *ngFor="let chargePole of chargerPoleArray; let i = index"
                   [value]="chargePole.chargepoleId">{{chargePole.name}}</option>
         </select>
       </div>
@@ -60,7 +60,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="">
-        <div *ngIf="sessions.length > 0" class="table-box tableScroll">
+        <div *ngIf="sessionsArray.length > 0" class="table-box tableScroll">
           <div class="" *ngIf="tableElement.offsetHeight > 450" [style.width.px]="tableElement.getBoundingClientRect().width" #tableHead>
             <table matSort class="dashboard-table">
               <tr>
@@ -89,11 +89,11 @@
           </div>
           <div class="tableScroll-body" #tableBody>
             <table class="dashboard-table" #tableElement>
-              <tr *ngFor="let element of sessions; let i = index">
+              <tr *ngFor="let element of sessionsArray; let i = index">
                 <td class="para-text sizeNum">{{i + 1}}</td>
                 <th class="para-text sizeName"><h2>{{element.dt}}</h2></th>
-                <th class="para-text sizeName"><h2>{{element.start}}</h2></th>
-                <th class="para-text sizeName"><h2>{{element.stop}}</h2></th>
+                <th class="para-text sizeName"><h2>{{element.start.hours + ":" + element.start.minutes}}</h2></th>
+                <th class="para-text sizeName"><h2>{{element.stop.hours + ":" + element.stop.minutes}}</h2></th>
                 <th class="para-text sizeName"><h2>{{element.soc_inittial}}</h2></th>
                 <th class="para-text sizeName"><h2>{{element.soc_final}}</h2></th>
                 <th class="para-text sizeName"><h2>{{element.battery_size}}</h2></th>
@@ -104,7 +104,7 @@
             </table>
           </div>
         </div>
-        <div *ngIf="sessions.length == 0">
+        <div *ngIf="sessionsArray.length == 0">
           <label class="form-label pl-0">No components of this type</label>
         </div>
       </div>

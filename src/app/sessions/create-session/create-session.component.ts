@@ -115,7 +115,8 @@ export class CreateSessionComponent implements OnInit {
     battery_size:0,
     smart:false,
     power:this.powers[0],
-    much_charge:0
+    much_charge:0,
+    control_applyed: false
   }
 
   constructor(private http: HttpClient, @Inject(ApiUrl) private apiUrl: string, public dialog: MatDialog) {

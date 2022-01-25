@@ -17,11 +17,11 @@
   <!--Smart-->
   <div class="row padding-b-null">
     <div class="form-label">
-      Smart charging <mat-slide-toggle [checked]="newSession.smart" (change)="clickSmart()"></mat-slide-toggle>
+      Smart charging <mat-slide-toggle [checked]="newSession.smart" (change)="clickSmart()">Direct charging</mat-slide-toggle>
     </div>
   </div>
 
-  <div *ngIf="newSession.smart">
+  <div *ngIf="!newSession.smart">
     <!--Power-->
     <div class="row padding-10">
       <div class="">
@@ -129,6 +129,22 @@
 
 
 
+  </div>
+  <div *ngIf="newSession.smart">
+    <!--Charge-->
+    <div class="row padding-10">
+      <div class="">
+        <label class="form-label">How much charge</label>
+      </div>
+      <div class="">
+        <div class="form-group">
+          <input type="text" class="form-control"  placeholder="Value" [(ngModel)]="newSession.much_charge"/>
+        </div>
+      </div>
+      <div class="">
+        <label class="form-label">kWh</label>
+      </div>
+    </div>
   </div>
 
   <button

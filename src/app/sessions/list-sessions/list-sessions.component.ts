@@ -133,7 +133,8 @@ export class ListSessionsComponent implements OnInit {
       battery_size:60,
       smart:false,
       power:12,
-      much_charge:0
+      much_charge:0,
+      control_applyed:false
     },
     {
       sessionId:21,
@@ -147,7 +148,8 @@ export class ListSessionsComponent implements OnInit {
       battery_size:60,
       smart:true,
       power:10,
-      much_charge:0
+      much_charge:0,
+      control_applyed:false
     }]
 
   constructor(private http: HttpClient, @Inject(ApiUrl) private apiUrl: string, public dialog: MatDialog) {

@@ -35,4 +35,5 @@ export interface SessionList {
   smart:boolean;
   power: number;
   much_charge: number;
+  control_applyed: boolean;
 }

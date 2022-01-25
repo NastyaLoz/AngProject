@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl:"https://ev.oceli.energy",
-  localUrl: "https://evapi.oceli.energy"
+  apiUrl:"https://api.ev.oceli.energy",
+  localUrl: "https://ev.oceli.energy"
 };

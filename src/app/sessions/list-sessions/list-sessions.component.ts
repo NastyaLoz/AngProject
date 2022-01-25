@@ -155,7 +155,7 @@ export class ListSessionsComponent implements OnInit {
       debugger
       this.chargerPoleArray = result;
       this.selected = this.chargerPoleArray[0].chargepoleId;
-      this.selected = this.chargerPoleArray[0].chargepoleId;
+      // this.selected = this.chargerPoleArray[0].chargepoleId;
       this.getSessions(this.selected);
     }, error => {
       console.log(error);

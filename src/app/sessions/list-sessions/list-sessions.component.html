@@ -91,7 +91,9 @@
             <table class="dashboard-table" #tableElement>
               <tr *ngFor="let element of sessionsArray; let i = index">
                 <td class="para-text sizeNum">{{i + 1}}</td>
-                <th class="para-text sizeName"><h2>{{element.dt}}</h2></th>
+                <th class="para-text sizeName"><h2>
+                  {{element.dt.slice(0, element.dt.indexOf('T')).replaceAll('-',':') + " "
+                + element.dt.slice(element.dt.indexOf('T')+1,element.dt.length)}}</h2></th>
                 <th class="para-text sizeName"><h2>{{element.start.hours + ":" + element.start.minutes}}</h2></th>
                 <th class="para-text sizeName"><h2>{{element.stop.hours + ":" + element.stop.minutes}}</h2></th>
                 <th class="para-text sizeName"><h2>{{element.soc_inittial}}</h2></th>

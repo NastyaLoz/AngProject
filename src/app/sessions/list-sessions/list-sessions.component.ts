@@ -26,7 +26,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./list-sessions.component.css']
 })
 export class ListSessionsComponent implements OnInit {
-  selected: any;
+  selected: any = 1;
   sessionsArray: any;
   chargerPoleArray: any;
   num:any;
@@ -54,21 +54,107 @@ export class ListSessionsComponent implements OnInit {
       charging_time:"1",
       name:"E100561*002"
     },
+    {
+      chargepoleId:3,
+      power_source:"DC",
+      power_level:"5",
+      cost_optimization:"0",
+      charging_time:"0",
+      name:"E100561*003"
+    },
+    {
+      chargepoleId:4,
+      power_source:"AC",
+      power_level:"2",
+      cost_optimization:"1",
+      charging_time:"0",
+      name:"E100561*004"
+    },
+    {
+      chargepoleId:5,
+      power_source:"AC",
+      power_level:"10",
+      cost_optimization:"1",
+      charging_time:"1",
+      name:"E100561*005"
+    },
+    {
+      chargepoleId:6,
+      power_source:"DC",
+      power_level:"2",
+      cost_optimization:"1",
+      charging_time:"1",
+      name:"E100561*006"
+    },
+    {
+      chargepoleId:7,
+      power_source:"AC",
+      power_level:"6",
+      cost_optimization:"0",
+      charging_time:"0",
+      name:"E100561*007"
+    },
+    {
+      chargepoleId:8,
+      power_source:"DC",
+      power_level:"1",
+      cost_optimization:"1",
+      charging_time:"1",
+      name:"E100561*008"
+    },
+    {
+      chargepoleId:9,
+      power_source:"AC",
+      power_level:"11",
+      cost_optimization:"0",
+      charging_time:"1",
+      name:"E100561*009"
+    },
+    {
+      chargepoleId:10,
+      power_source:"AC",
+      power_level:"4",
+      cost_optimization:"1",
+      charging_time:"1",
+      name:"E100561*0010"
+    },
   ];
 
-  sessions: Session[] = [{
-    sessionId:-1,
-    chargePole: this.chargePoles[0],
-    dt: moment().format('YY-MM-DD HH_mm_ss'),
-    start:moment().format('HH_mm_ss'),
-    stop:moment().format('HH_mm_ss'),
-    smart:false,
-  }]
+  sessions: SessionList[] = [
+    {
+      sessionId:1,
+      chargepoleId: 1,
+      // dt: new Date(),
+      dt: new Date().toISOString(),
+      start:"11:12",
+      stop:"24:21",
+      soc_final:0,
+      soc_inittial:20,
+      battery_size:60,
+      smart:false,
+      power:12,
+      much_charge:0
+    },
+    {
+      sessionId:21,
+      chargepoleId: 1,
+      // dt: new Date(),
+      dt: new Date().toISOString(),
+      start:"10:00",
+      stop:"11:20",
+      soc_final:10,
+      soc_inittial:20,
+      battery_size:60,
+      smart:true,
+      power:10,
+      much_charge:0
+    }]
 
   constructor(private http: HttpClient, @Inject(ApiUrl) private apiUrl: string, public dialog: MatDialog) {
     this.http.get<ChargePole[]>(this.apiUrl + '/sessions/chargepole').subscribe(result => {
       debugger
       this.chargerPoleArray = result;
+      this.selected = this.chargerPoleArray[0].chargepoleId;
       this.selected = this.chargerPoleArray[0].chargepoleId;
       this.getSessions(this.selected);
     }, error => {

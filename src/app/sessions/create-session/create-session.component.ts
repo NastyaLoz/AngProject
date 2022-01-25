@@ -34,6 +34,70 @@ export class CreateSessionComponent implements OnInit {
       charging_time:"1",
       name:"E100561*002"
     },
+    {
+      chargepoleId:3,
+      power_source:"DC",
+      power_level:"5",
+      cost_optimization:"0",
+      charging_time:"0",
+      name:"E100561*003"
+    },
+    {
+      chargepoleId:4,
+      power_source:"AC",
+      power_level:"2",
+      cost_optimization:"1",
+      charging_time:"0",
+      name:"E100561*004"
+    },
+    {
+      chargepoleId:5,
+      power_source:"AC",
+      power_level:"10",
+      cost_optimization:"1",
+      charging_time:"1",
+      name:"E100561*005"
+    },
+    {
+      chargepoleId:6,
+      power_source:"DC",
+      power_level:"2",
+      cost_optimization:"1",
+      charging_time:"1",
+      name:"E100561*006"
+    },
+    {
+      chargepoleId:7,
+      power_source:"AC",
+      power_level:"6",
+      cost_optimization:"0",
+      charging_time:"0",
+      name:"E100561*007"
+    },
+    {
+      chargepoleId:8,
+      power_source:"DC",
+      power_level:"1",
+      cost_optimization:"1",
+      charging_time:"1",
+      name:"E100561*008"
+    },
+    {
+      chargepoleId:9,
+      power_source:"AC",
+      power_level:"11",
+      cost_optimization:"0",
+      charging_time:"1",
+      name:"E100561*009"
+    },
+    {
+      chargepoleId:10,
+      power_source:"AC",
+      power_level:"4",
+      cost_optimization:"1",
+      charging_time:"1",
+      name:"E100561*0010"
+    },
   ];
 
   date = new FormControl(new Date());
@@ -41,7 +105,7 @@ export class CreateSessionComponent implements OnInit {
 
   newSession: SessionList = {
     sessionId:-1,
-    chargepoleId: -2,
+    chargepoleId: 1,
     // dt: new Date(),
     dt: new Date().toISOString(),
     start:moment().format('HH:mm'),

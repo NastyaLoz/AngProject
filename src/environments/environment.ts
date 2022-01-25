@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'https://localhost:5001',
-  localUrl: 'https://localhost:4200',
+  localUrl: 'https://ev.oceli.energy.Server',
 };
 
 /*

@@ -8,7 +8,7 @@
     <div class="padding-10">
       <div class="dropdown-select mr-2 ml-2">
         <select [(ngModel)]="newSession.chargepoleId">
-          <option *ngFor="let chargePole of chargePoleArray; let i = index"
+          <option *ngFor="let chargePole of chargePoles; let i = index"
                   [value]="chargePole.chargepoleId">{{chargePole.name}}</option>
         </select>
       </div>
@@ -17,115 +17,119 @@
   <!--Smart-->
   <div class="row padding-b-null">
     <div class="form-label">
-      <mat-slide-toggle [checked]="newSession.smart" (change)="clickSmart()">Smart</mat-slide-toggle>
-    </div>
-  </div>
-  <!--Power-->
-  <div class="row padding-10">
-    <div class="">
-      <label class="form-label">Maximum load power (0-11kWh)</label>
-    </div>
-    <!-- Drop Down -->
-    <div class="padding-10">
-      <div class="dropdown-select mr-2 ml-2">
-        <select [(ngModel)]="newSession.power">
-          <option *ngFor="let power of powers; let i = index"
-                  [value]="power">{{power}}</option>
-        </select>
-      </div>
-    </div>
-  </div>
-  <!--Date-->
-  <div class="row padding-b-null">
-    <label class="form-label">Date</label>
-    <mat-form-field>
-      <mat-label>Choose a date</mat-label>
-      <input matInput [matDatepicker]="picker1" [formControl]="serializedDate" [(ngModel)]="newSession.dt">
-      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-      <mat-datepicker #picker1></mat-datepicker>
-    </mat-form-field>
-  </div>
-
-  <!--Start Time-->
-  <div class="row padding-b-null">
-    <div class="">
-      <label class="form-label">Start</label>
-    </div>
-    <div class="ngx-timepicker-field-example">
-      <ngx-timepicker-field [format]="24" [defaultTime]="newSession.start" [(ngModel)]="newSession.start"></ngx-timepicker-field>
-    </div>
-  </div>
-  <!--End Time-->
-  <div class="row padding-b-null">
-    <div class="">
-      <label class="form-label">End </label>
-    </div>
-    <div class="ngx-timepicker-field-example">
-      <ngx-timepicker-field [format]="24" [defaultTime]="newSession.stop" [(ngModel)]="newSession.stop"></ngx-timepicker-field>
+      Smart charging <mat-slide-toggle [checked]="newSession.smart" (change)="clickSmart()"></mat-slide-toggle>
     </div>
   </div>
 
-  <!--Charge-->
-  <div class="row padding-10">
-    <div class="">
-      <label class="form-label">Current level of charge</label>
-    </div>
-    <div class="">
-      <div class="form-group">
-        <input type="text" class="form-control"  placeholder="Value" [(ngModel)]="newSession.soc_inittial"/>
+  <div *ngIf="newSession.smart">
+    <!--Power-->
+    <div class="row padding-10">
+      <div class="">
+        <label class="form-label">Maximum load power (0-11kWh)</label>
+      </div>
+      <!-- Drop Down -->
+      <div class="padding-10">
+        <div class="dropdown-select mr-2 ml-2">
+          <select [(ngModel)]="newSession.power">
+            <option *ngFor="let power of powers; let i = index"
+                    [value]="power">{{power}}</option>
+          </select>
+        </div>
       </div>
     </div>
+    <!--Date-->
+    <div class="row padding-b-null">
+      <label class="form-label">Date</label>
+      <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker1" [formControl]="serializedDate" [(ngModel)]="newSession.dt">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <!--Start Time-->
+    <div class="row padding-b-null">
+      <div class="">
+        <label class="form-label">Start</label>
+      </div>
+      <div class="ngx-timepicker-field-example">
+        <ngx-timepicker-field [format]="24" [defaultTime]="newSession.start" [(ngModel)]="newSession.start"></ngx-timepicker-field>
+      </div>
+    </div>
+    <!--End Time-->
+    <div class="row padding-b-null">
+      <div class="">
+        <label class="form-label">End </label>
+      </div>
+      <div class="ngx-timepicker-field-example">
+        <ngx-timepicker-field [format]="24" [defaultTime]="newSession.stop" [(ngModel)]="newSession.stop"></ngx-timepicker-field>
+      </div>
+    </div>
+
+    <!--  &lt;!&ndash;Charge&ndash;&gt;-->
+    <!--  <div class="row padding-10">-->
     <!--    <div class="">-->
-    <!--      <label class="form-label">kWh</label>-->
+    <!--      <label class="form-label">Current level of charge</label>-->
     <!--    </div>-->
-  </div>
-
-  <!--Charge-->
-  <div class="row padding-10">
-    <div class="">
-      <label class="form-label">Wished level of charge</label>
-    </div>
-    <div class="">
-      <div class="form-group">
-        <input type="text" class="form-control"  placeholder="Value" [(ngModel)]="newSession.soc_final"/>
-      </div>
-    </div>
     <!--    <div class="">-->
-    <!--      <label class="form-label">kWh</label>-->
+    <!--      <div class="form-group">-->
+    <!--        <input type="text" class="form-control"  placeholder="Value" [(ngModel)]="newSession.soc_inittial"/>-->
+    <!--      </div>-->
     <!--    </div>-->
-  </div>
+    <!--    &lt;!&ndash;    <div class="">&ndash;&gt;-->
+    <!--    &lt;!&ndash;      <label class="form-label">kWh</label>&ndash;&gt;-->
+    <!--    &lt;!&ndash;    </div>&ndash;&gt;-->
+    <!--  </div>-->
 
-  <!--Charge-->
-  <div class="row padding-10">
-    <div class="">
-      <label class="form-label">How much charge</label>
-    </div>
-    <div class="">
-      <div class="form-group">
-        <input type="text" class="form-control"  placeholder="Value" [(ngModel)]="newSession.much_charge"/>
-      </div>
-    </div>
-    <div class="">
-      <label class="form-label">kWh</label>
-    </div>
-  </div>
-
-  <!--Charge-->
-  <div class="row padding-10">
-    <div class="">
-      <label class="form-label">Battery size</label>
-    </div>
-    <div class="">
-      <div class="form-group">
-        <input type="text" class="form-control"  placeholder="Value" [(ngModel)]="newSession.battery_size"/>
-      </div>
-    </div>
+    <!--  &lt;!&ndash;Charge&ndash;&gt;-->
+    <!--  <div class="row padding-10">-->
     <!--    <div class="">-->
-    <!--      <label class="form-label">kWh</label>-->
+    <!--      <label class="form-label">Wished level of charge</label>-->
     <!--    </div>-->
+    <!--    <div class="">-->
+    <!--      <div class="form-group">-->
+    <!--        <input type="text" class="form-control"  placeholder="Value" [(ngModel)]="newSession.soc_final"/>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--    &lt;!&ndash;    <div class="">&ndash;&gt;-->
+    <!--    &lt;!&ndash;      <label class="form-label">kWh</label>&ndash;&gt;-->
+    <!--    &lt;!&ndash;    </div>&ndash;&gt;-->
+    <!--  </div>-->
+
+    <!--Charge-->
+    <div class="row padding-10">
+      <div class="">
+        <label class="form-label">How much charge</label>
+      </div>
+      <div class="">
+        <div class="form-group">
+          <input type="text" class="form-control"  placeholder="Value" [(ngModel)]="newSession.much_charge"/>
+        </div>
+      </div>
+      <div class="">
+        <label class="form-label">kWh</label>
+      </div>
+    </div>
+
+    <!--  &lt;!&ndash;Charge&ndash;&gt;-->
+    <!--  <div class="row padding-10">-->
+    <!--    <div class="">-->
+    <!--      <label class="form-label">Battery size</label>-->
+    <!--    </div>-->
+    <!--    <div class="">-->
+    <!--      <div class="form-group">-->
+    <!--        <input type="text" class="form-control"  placeholder="Value" [(ngModel)]="newSession.battery_size"/>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--    &lt;!&ndash;    <div class="">&ndash;&gt;-->
+    <!--    &lt;!&ndash;      <label class="form-label">kWh</label>&ndash;&gt;-->
+    <!--    &lt;!&ndash;    </div>&ndash;&gt;-->
+    <!--  </div>-->
+
+
+
   </div>
-
-
 
   <button
     class="button-primary"

@@ -8,7 +8,7 @@
     <div class="padding-10">
       <div class="dropdown-select mr-2 ml-2">
         <select [(ngModel)]="newSession.chargepoleId">
-          <option *ngFor="let chargePole of chargePoles; let i = index"
+          <option *ngFor="let chargePole of chargePoleArray; let i = index"
                   [value]="chargePole.chargepoleId">{{chargePole.name}}</option>
         </select>
       </div>

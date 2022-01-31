@@ -56,61 +56,129 @@
 <!--                   aria-label="Select page of periodic elements">-->
 <!--    </mat-paginator>-->
 <!--  </div>-->
+
+
+
   <!--Table-->
-  <div class="row">
-    <div class="col-md-12">
-      <div class="">
-        <div *ngIf="sessionsArray.length > 0" class="table-box tableScroll">
-          <div class="" *ngIf="tableElement.offsetHeight > 450" [style.width.px]="tableElement.getBoundingClientRect().width" #tableHead>
-            <table matSort class="dashboard-table">
-              <tr>
-                <th class="sizeNum"><h2>№</h2></th>
-                <th class="" [style.width.px]="tableElement.rows[0].cells[1].getBoundingClientRect().width"><h2>Date</h2></th>
-                <th class="" [style.width.px]="tableElement.rows[0].cells[2].getBoundingClientRect().width"><h2>Start</h2></th>
-                <th class="" [style.width.px]="tableElement.rows[0].cells[3].getBoundingClientRect().width"><h2>Stop</h2></th>
-              </tr>
-            </table>
-          </div>
-          <div class="" *ngIf="tableElement.offsetHeight < 450" [style.width.px]="tableElement.getBoundingClientRect().width" #tableHead>
-            <table matSort class="dashboard-table">
-              <tr>
-                <th class="sizeNum" ><h2>№</h2></th>
-                <th class="" [style.width.px]="tableElement.rows[0].cells[1].getBoundingClientRect().width"><h2>Date</h2></th>
-                <th class="" [style.width.px]="tableElement.rows[0].cells[2].getBoundingClientRect().width"><h2>Start</h2></th>
-                <th class="" [style.width.px]="tableElement.rows[0].cells[3].getBoundingClientRect().width"><h2>Stop</h2></th>
-                <th class="" [style.width.px]="tableElement.rows[0].cells[4].getBoundingClientRect().width"><h2>Current level of charge (%)</h2></th>
-                <th class="" [style.width.px]="tableElement.rows[0].cells[5].getBoundingClientRect().width"><h2>Wished level of charge (%)</h2></th>
-                <th class="" [style.width.px]="tableElement.rows[0].cells[6].getBoundingClientRect().width"><h2>Battery size (kWh)</h2></th>
-                <th class="" [style.width.px]="tableElement.rows[0].cells[7].getBoundingClientRect().width"><h2>Smart</h2></th>
-                <th class="" [style.width.px]="tableElement.rows[0].cells[8].getBoundingClientRect().width"><h2>Load power (kW)</h2></th>
-                <th class="" [style.width.px]="tableElement.rows[0].cells[9].getBoundingClientRect().width"><h2>Charge (kWh)</h2></th>
-              </tr>
-            </table>
-          </div>
-          <div class="tableScroll-body" #tableBody>
-            <table class="dashboard-table" #tableElement>
-              <tr *ngFor="let element of sessionsArray; let i = index">
-                <td class="para-text sizeNum">{{i + 1}}</td>
-                <th class="para-text sizeName"><h2>
-                  {{element.dt.slice(0, element.dt.indexOf('T')).replaceAll('-',':') + " "
-                + element.dt.slice(element.dt.indexOf('T')+1,element.dt.length)}}</h2></th>
-                <th class="para-text sizeName"><h2>{{element.start.hours + ":" + element.start.minutes}}</h2></th>
-                <th class="para-text sizeName"><h2>{{element.stop.hours + ":" + element.stop.minutes}}</h2></th>
-                <th class="para-text sizeName"><h2>{{element.soc_inittial}}</h2></th>
-                <th class="para-text sizeName"><h2>{{element.soc_final}}</h2></th>
-                <th class="para-text sizeName"><h2>{{element.battery_size}}</h2></th>
-                <th class="para-text sizeName"><h2>{{element.smart}}</h2></th>
-                <th class="para-text sizeName"><h2>{{element.power}}</h2></th>
-                <th class="para-text sizeName"><h2>{{element.much_charge}}</h2></th>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <div *ngIf="sessionsArray.length == 0">
-          <label class="form-label pl-0">No components of this type</label>
-        </div>
-      </div>
-    </div>
+<!--  <div class="row">-->
+<!--    <div class="col-md-12">-->
+<!--      <div class="">-->
+<!--        <div *ngIf="sessionsArray.length > 0" class="table-box tableScroll">-->
+<!--          <div class="" *ngIf="tableElement.offsetHeight > 450" [style.width.px]="tableElement.getBoundingClientRect().width" #tableHead>-->
+<!--            <table matSort class="dashboard-table">-->
+<!--              <tr>-->
+<!--                <th class="sizeNum"><h2>№</h2></th>-->
+<!--                <th class="" [style.width.px]="tableElement.rows[0].cells[1].getBoundingClientRect().width"><h2>Date</h2></th>-->
+<!--                <th class="" [style.width.px]="tableElement.rows[0].cells[2].getBoundingClientRect().width"><h2>Start</h2></th>-->
+<!--                <th class="" [style.width.px]="tableElement.rows[0].cells[3].getBoundingClientRect().width"><h2>Stop</h2></th>-->
+<!--              </tr>-->
+<!--            </table>-->
+<!--          </div>-->
+<!--          <div class="" *ngIf="tableElement.offsetHeight < 450" [style.width.px]="tableElement.getBoundingClientRect().width" #tableHead>-->
+<!--            <table matSort class="dashboard-table">-->
+<!--              <tr>-->
+<!--                <th class="sizeNum" ><h2>№</h2></th>-->
+<!--                <th class="" [style.width.px]="tableElement.rows[0].cells[1].getBoundingClientRect().width"><h2>Date order</h2></th>-->
+<!--                <th class="" [style.width.px]="tableElement.rows[0].cells[2].getBoundingClientRect().width"><h2>Date of charge</h2></th>-->
+<!--                <th class="" [style.width.px]="tableElement.rows[0].cells[3].getBoundingClientRect().width"><h2>Start</h2></th>-->
+<!--                <th class="" [style.width.px]="tableElement.rows[0].cells[4].getBoundingClientRect().width"><h2>Stop</h2></th>-->
+<!--&lt;!&ndash;                <th class="" [style.width.px]="tableElement.rows[0].cells[4].getBoundingClientRect().width"><h2>Current level of charge (%)</h2></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                <th class="" [style.width.px]="tableElement.rows[0].cells[5].getBoundingClientRect().width"><h2>Wished level of charge (%)</h2></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                <th class="" [style.width.px]="tableElement.rows[0].cells[6].getBoundingClientRect().width"><h2>Battery size (kWh)</h2></th>&ndash;&gt;-->
+<!--                <th class="" [style.width.px]="tableElement.rows[0].cells[5].getBoundingClientRect().width"><h2>Charging type</h2></th>-->
+<!--                <th class="" [style.width.px]="tableElement.rows[0].cells[6].getBoundingClientRect().width"><h2>Load power (kW)</h2></th>-->
+<!--                <th class="" [style.width.px]="tableElement.rows[0].cells[7].getBoundingClientRect().width"><h2>Charge (kWh)</h2></th>-->
+<!--                <th class="sizeActive"><h2>Active</h2></th>-->
+<!--              </tr>-->
+<!--            </table>-->
+<!--          </div>-->
+<!--          <div class="tableScroll-body" #tableBody>-->
+<!--            <table class="dashboard-table" #tableElement>-->
+<!--              <tr *ngFor="let element of sessionsArray; let i = index">-->
+<!--                <td class="para-text sizeNum">{{i + 1}}</td>-->
+<!--                <th class="para-text sizeName"><h2>-->
+<!--                  {{element.order_date.slice(0, element.dt.indexOf('T')) + " "-->
+<!--                + element.order_date.slice(element.dt.indexOf('T')+1,element.order_date.length)}}</h2></th>-->
+<!--                <th class="para-text sizeName"><h2>-->
+<!--                  {{element.dt.slice(0, element.dt.indexOf('T'))}}</h2></th>-->
+<!--                <th class="para-text sizeName"><h2>{{element.start.hours + ":" + element.start.minutes}}</h2></th>-->
+<!--                <th class="para-text sizeName"><h2>{{element.stop.hours + ":" + element.stop.minutes}}</h2></th>-->
+<!--&lt;!&ndash;                <th class="para-text sizeName"><h2>{{element.soc_inittial}}</h2></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                <th class="para-text sizeName"><h2>{{element.soc_final}}</h2></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                <th class="para-text sizeName"><h2>{{element.battery_size}}</h2></th>&ndash;&gt;-->
+<!--                <th class="para-text sizeName"><h2>{{!element.smart ? "Smart" : "Direct"}}</h2></th>-->
+<!--                <th class="para-text sizeName"><h2>{{element.power}}</h2></th>-->
+<!--                <th class="para-text sizeName"><h2>{{element.much_charge}}</h2></th>-->
+<!--                <td class="sizeActive">-->
+<!--                  <div class="active-row">-->
+<!--                    <div class="">-->
+<!--                      <div (click)="edit(element)" class="active-text">-->
+<!--                        <a class="" icon="fa fa-pencil">Edit</a>-->
+<!--                        <i class="fa fa-pencil ml-2"></i>-->
+<!--                      </div>-->
+<!--&lt;!&ndash;                      <app-edit-session [sessionIn]="element" (editSession)="updateEditedRow($event)"></app-edit-session>&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    <div class="ml-4">-->
+<!--                      <app-delete-session [session]="element" (deletedSession)="updateDeletedRow($event)"></app-delete-session>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--            </table>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div *ngIf="sessionsArray.length == 0">-->
+<!--          <label class="form-label pl-0">No components of this type</label>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+  <div *ngIf="sessionsArray.length > 0">
+    <p-table [value]="sessionsArray" (sortFunction)="customSort($event)" [customSort]="true">
+      <ng-template pTemplate="header">
+        <tr>
+          <!--        <th pSortableColumn="num">No. <p-sortIcon field="num"></p-sortIcon></th>-->
+          <th pSortableColumn="date_order">Date order <p-sortIcon field="date_order"></p-sortIcon></th>
+          <th pSortableColumn="dt">Date of charge <p-sortIcon field="dt"></p-sortIcon></th>
+          <th pSortableColumn="start">Start <p-sortIcon field="start"></p-sortIcon></th>
+          <th pSortableColumn="stop">Stop <p-sortIcon field="stop"></p-sortIcon></th>
+          <th pSortableColumn="smart">Charging type <p-sortIcon field="smart"></p-sortIcon></th>
+          <th pSortableColumn="power">Load power (kW) <p-sortIcon field="power"></p-sortIcon></th>
+          <th pSortableColumn="much_charge">Charge (kWh) <p-sortIcon field="much_charge"></p-sortIcon></th>
+          <th class="sizeActive">Active</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-element let-index >
+        <tr>
+          <!--        <td>index</td>-->
+          <td class="para-text">{{element.order_date.slice(0, element.dt.indexOf('T')) + " "
+          + element.order_date.slice(element.dt.indexOf('T')+1,element.order_date.length)}}</td>
+          <td class="para-text">{{element.dt.slice(0, element.dt.indexOf('T'))}}</td>
+          <td class="para-text">{{element.start.hours + ":" + element.start.minutes}}</td>
+          <td class="para-text">{{element.stop.hours + ":" + element.stop.minutes}}</td>
+          <th class="para-text">{{element.smart ? "Smart" : "Direct"}}</th>
+          <th class="para-text">{{element.power}}</th>
+          <th class="para-text">{{element.much_charge}}</th>
+          <td class="sizeActive">
+            <div class="active-row">
+              <div class="">
+                <div (click)="edit(element)" class="active-text">
+                  <a class="" icon="fa fa-pencil">Edit</a>
+                  <i class="fa fa-pencil ml-2"></i>
+                </div>
+                <!--                      <app-edit-session [sessionIn]="element" (editSession)="updateEditedRow($event)"></app-edit-session>-->
+              </div>
+              <div class="ml-4">
+                <app-delete-session [session]="element" (deletedSession)="updateDeletedRow($event)"></app-delete-session>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div *ngIf="sessionsArray.length == 0">
+    <label class="form-label pl-0">No sessions of this type</label>
   </div>
 </div>
 

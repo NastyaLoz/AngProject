@@ -102,12 +102,13 @@ export class CreateSessionComponent implements OnInit {
 
   date = new FormControl(new Date());
   serializedDate = new FormControl(new Date().toISOString());
+  minDate = new Date();
 
   newSession: SessionList = {
     sessionId:-1,
     chargepoleId: 1,
     // dt: new Date(),
-    dt: new Date().toISOString(),
+    dt: new Date(),
     start:moment().format('HH:mm'),
     stop:moment().format('HH:mm'),
     soc_final:0,
@@ -116,7 +117,8 @@ export class CreateSessionComponent implements OnInit {
     smart:false,
     power:this.powers[0],
     much_charge:0,
-    control_applyed: false
+    control_applyed: false,
+    order_date: new Date().toISOString()
   }
 
   constructor(private http: HttpClient, @Inject(ApiUrl) private apiUrl: string, public dialog: MatDialog) {

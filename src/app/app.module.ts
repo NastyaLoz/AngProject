@@ -33,6 +33,10 @@ import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import { DeleteSessionComponent } from './sessions/delete-session/delete-session.component';
+import { EditSessionComponent } from './sessions/edit-session/edit-session.component';
+import {TableModule} from "primeng/table";
+import {CalendarModule} from 'primeng/calendar';
 
 export const ApiUrl = new InjectionToken('ApiUrl');
 
@@ -47,6 +51,8 @@ export const ApiUrl = new InjectionToken('ApiUrl');
     SessionMenuComponent,
     CreateSessionComponent,
     ListSessionsComponent,
+    DeleteSessionComponent,
+    EditSessionComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +78,9 @@ export const ApiUrl = new InjectionToken('ApiUrl');
     NgxMaterialTimepickerModule,
     MatButtonToggleModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    TableModule,
+    CalendarModule
   ],
   providers: [
     {provide: ApiUrl, useValue: environment.apiUrl},

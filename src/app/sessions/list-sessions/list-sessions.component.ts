@@ -6,6 +6,8 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {ApiUrl} from "../../app.module";
 import {MatDialog} from "@angular/material/dialog";
+import {NavigationExtras, Router} from "@angular/router";
+import { SortEvent } from 'primeng/api';
 
 const ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
@@ -23,7 +25,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-list-sessions',
   templateUrl: './list-sessions.component.html',
-  styleUrls: ['./list-sessions.component.css']
+  styleUrls: ['./list-sessions.component.css',
+    "../../../../node_modules/primeicons/primeicons.css",
+    // "../../../../node_modules/primeng/resources/themes/lara-light-indigo/theme.css",
+    "../../../../node_modules/primeng/resources/primeng.css"]
 })
 export class ListSessionsComponent implements OnInit {
   selected: any = 1;
@@ -125,7 +130,7 @@ export class ListSessionsComponent implements OnInit {
       sessionId:1,
       chargepoleId: 1,
       // dt: new Date(),
-      dt: new Date().toISOString(),
+      dt: new Date(),
       start:"11:12",
       stop:"24:21",
       soc_final:0,
@@ -134,13 +139,14 @@ export class ListSessionsComponent implements OnInit {
       smart:false,
       power:12,
       much_charge:0,
-      control_applyed:false
+      control_applyed:false,
+      order_date:new Date().toISOString()
     },
     {
       sessionId:21,
       chargepoleId: 1,
       // dt: new Date(),
-      dt: new Date().toISOString(),
+      dt: new Date(),
       start:"10:00",
       stop:"11:20",
       soc_final:10,
@@ -149,10 +155,11 @@ export class ListSessionsComponent implements OnInit {
       smart:true,
       power:10,
       much_charge:0,
-      control_applyed:false
+      control_applyed:false,
+      order_date:new Date().toISOString()
     }]
 
-  constructor(private http: HttpClient, @Inject(ApiUrl) private apiUrl: string, public dialog: MatDialog) {
+  constructor(private http: HttpClient, @Inject(ApiUrl) private apiUrl: string, public dialog: MatDialog,private router: Router) {
     this.http.get<ChargePole[]>(this.apiUrl + '/sessions/chargepole').subscribe(result => {
       debugger
       this.chargerPoleArray = result;
@@ -169,7 +176,7 @@ export class ListSessionsComponent implements OnInit {
   }
 
   getSessions(val: number){
-    this.http.get<SessionList[]>(this.apiUrl + '/sessions/' + val).subscribe(result => {
+    this.http.get<SessionList[]>(this.apiUrl + '/sessions/chargepoleId=' + val).subscribe(result => {
       debugger
       this.sessionsArray = result;
       this.num = Array(this.sessionsArray.length).fill(0).map((e,i)=>i+1);
@@ -183,4 +190,53 @@ export class ListSessionsComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  updateDeletedRow($event: SessionList): void {
+    if ($event.chargepoleId == this.selected) {
+      this.sessionsArray = this.sessionsArray.filter((value: { sessionId: number; }, key: any) => {
+        return value.sessionId !== $event.sessionId;
+      });
+    }
+  }
+
+  updateEditedRow($event: SessionList): any {
+    //console.log($event);
+    if ($event.chargepoleId == this.selected) {
+      debugger
+      const inputIds: number[] = [];
+      // this.componentsByType.forEach(item => inputIds.push(item.componentId));
+      // this.componentsByType[inputIds.indexOf($event.componentId)] = $event;
+      this.sessionsArray.forEach((item: { sessionId: number; })=>inputIds.push(item.sessionId));
+      this.sessionsArray[inputIds.indexOf($event.sessionId)] = $event;
+    }
+  }
+
+  edit(element: SessionList) {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        elementId: element.sessionId,
+      }
+    }
+    this.router.navigate(['editSession'], navigationExtras);
+  }
+
+  customSort(event: SortEvent) {
+    event.data?.sort((data1, data2) => {
+      let value1 = data1[event.field??1];
+      let value2 = data2[event.field??2];
+      let result = null;
+
+      if (value1 == null && value2 != null)
+        result = -1;
+      else if (value1 != null && value2 == null)
+        result = 1;
+      else if (value1 == null && value2 == null)
+        result = 0;
+      else if (typeof value1 === 'string' && typeof value2 === 'string')
+        result = value1.localeCompare(value2);
+      else
+        result = (value1 < value2) ? -1 : (value1 > value2) ? 1 : 0;
+
+      return (event.order??1 * result);
+    });
+  }
 }

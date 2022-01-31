@@ -1,0 +1,38 @@
+<div (click)="formModal =true" class="active-text">
+  <a class="">Delete</a>
+  <i class="fa fa-trash ml-2"></i>
+</div>
+<!-- Form Modal -->
+<div class="modal" [ngClass]="{ active: formModal }" (click)="closeModal($event)">
+  <div class="modal-dialog" role="dialog" style="width: 800px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-md-12">
+          <div class="card-title-container">
+            <h5 class="card-title">Delete Session</h5>
+          </div>
+          <div class="col-md-2 dialog-close-btn-container">
+            <button type="button" class="close" data-dismiss="modal" (click)="formModal = false"></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md">
+            <label class="form-label">Are you sure you want to delete Session ({{session.order_date}})?</label>
+          </div>
+        </div>
+        <!--Button-->
+        <div class="button-elem">
+          <div class="">
+            <a class="btnLogout" (click)="delete()">Delete</a>
+          </div>
+          <div class="button-cancel">
+            <a class="btnLogout" (click)="formModal = false">Cancel</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

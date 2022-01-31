@@ -25,7 +25,7 @@ export interface PeriodicElement {
 
 export interface SessionList {
   sessionId: number;
-  dt: string;
+  dt: Date;
   start: string;
   stop:string;
   soc_inittial: number;
@@ -36,4 +36,5 @@ export interface SessionList {
   power: number;
   much_charge: number;
   control_applyed: boolean;
+  order_date:string;
 }

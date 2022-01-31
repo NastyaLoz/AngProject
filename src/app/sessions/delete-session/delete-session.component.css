@@ -1,0 +1,29 @@
+.size{
+  min-width: 50px;
+  max-height: 70px;
+}
+
+.button-elem {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.button-elem a{
+  width: 150px;
+}
+
+.button-cancel {
+  margin-left: 10px;
+}
+.active-text {
+  /*padding: 5px 8px 5px 8px;*/
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #1c4167;
+}
+
+.active-text:hover {
+  color:#56bae2;
+}

@@ -4,9 +4,15 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:5001',
+  apiUrl: 'https://api.ev.oceli.energy',
   localUrl: 'https://localhost:4200',
 };
+
+// export const environment = {
+//   production: false,
+//   apiUrl: 'https://localhost:5001',
+//   localUrl: 'https://localhost:4200',
+// };
 
 /*
  * For easier debugging in development mode, you can import the following file

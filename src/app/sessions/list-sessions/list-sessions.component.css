@@ -114,6 +114,8 @@ select option:hover {
 .sizeActive {
   min-width: 180px;
   max-width: 185px;
+  border:2px solid #e7e8e8;
+  padding: 10px!important;
 }
 
 .active-text {
@@ -131,4 +133,14 @@ select option:hover {
 .active-row {
   display: flex;
   flex-wrap: nowrap;
+}
+
+:host ::ng-deep .p-datatable .p-sortable-column{
+  border: 2px solid #e7e8e8;
+  padding: 10px!important;
+}
+
+:host ::ng-deep .para-text{
+  border: 2px solid #e7e8e8;
+  padding: 10px!important;
 }
